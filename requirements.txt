@@ -1,0 +1,11 @@
+# Core (inference + loss use)
+torch>=2.1
+numpy
+pillow
+
+# Qwen release only: resolving the frozen tower
+safetensors
+transformers
+
+# Training only (the released checkpoints were trained with SinkSGD_adv)
+# adv_optm

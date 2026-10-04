@@ -1,0 +1,4 @@
+{
+  "_what": "Copy to tower_path.json (or set the env QWEN_TOWER_PATH). The frozen 460.7M Qwen3.8-27B vision tower is NOT shipped in this release -- point this at a source you already have. Both sources are verified bit-identical (333/333 tensors).",
+  "qwen_tower_path": "C:/path/to/mmproj-Qwen3.8-27B-bf16.gguf  OR  C:/path/to/Qwen3.8-27B-HF-checkpoint-directory"
+}

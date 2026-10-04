@@ -1,0 +1,21 @@
+Qwen3_5VisionModel does not expose input embeddings. Gradients cannot flow back to the token embeddings when using adapters or gradient checkpointing. Override `get_input_embeddings` to fully support those features, or set `_input_embed_layer` to the attribute name that holds the embeddings.
+[device] cpu
+[hf-dir] X:/unique/models/Qwen3.8-27B
+[hf-dir] vision tensors: 333 (HF wants 333)
+[hf-dir] STRICT LOAD OK: 460.7M params (1758 MiB)
+[backbones] qwen38_vit27       dim=5120 params= 460.73M  oft_prefix='blocks.'  image_size=288  grad-ckpt  pool=merged
+[oft] wrapped 108 Linear layers with OFTv2 (block_size=32, block_share=False, scaled=True, dropout=0.0)
+[oft] NOTE: block_size auto-adjusted on 27 layer(s): [{'in_features': 4304, 'requested': 32, 'used': 16}, {'in_features': 4304, 'requested': 32, 'used': 16}, {'in_features': 4304, 'requested': 32, 'used': 16}, {'in_features': 4304, 'requested': 32, 'used': 16}] ...
+[oft] trainable OFT params: 2,317,896
+        e.g. tower.blocks.0.attn.qkv
+        e.g. tower.blocks.0.attn.proj
+        e.g. tower.blocks.0.mlp.linear_fc1
+[model] OFT tags set: {'oft': 108, 'oft_scaled': 108, 'lora_a': 0, 'lora_b': 0, 'dora_scale': 0, 'doft_magnitude': 0}
+[model] trainable 2,317,896 / 463,047,992 params (0.5006%)
+[oft-metric] loaded step=2800 image_size=288 preprocess=centre-square per_branch_norm=False amp=off
+[step002800.pt] d(x,x)==0: PASS
+[step002800.pt] d(x,y)>0 finite: PASS
+[step002800.pt] grad reaches both args: PASS
+[step002800.pt] per-image shape (N,): PASS
+[step002800.pt] d(x,y) = [0.0019, 0.0013, 0.0012, 0.0015, 0.0016, 0.0016, 0.0016, 0.0013]
+[validate_bundle] PASS
