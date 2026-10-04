@@ -43,7 +43,7 @@ leak-clean.
 
 It was selected for release on three measured grounds:
 
-1. **Downstream parity.** In a sister project that uses the metric as a *training loss* for an
+1. **Downstream parity.** In a downstream VAE-training A/B (a separate project that uses the metric as a *training loss* for an
    SDXL VAE, this checkpoint matched the other release candidates within FID/SFID error.
 2. **Best external-transfer scores** of all internally tracked candidates on the classic
    FR-IQA benchmark table (the full internal sweep of checkpoints and fusions ships in

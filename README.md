@@ -64,9 +64,9 @@ pixel/content term (both bundle READMEs carry this caveat).
 - The headline numbers are **single training draws**; measured run-level noise
   on these protocols is ~0.7pp. Differences between models smaller than that
   should not be over-read.
-- Panel metrics do not crown a loss. On the sister project's downstream VAE A/B,
-  the nights model did **not** improve decoder FID — its strong FR correlations
-  did not transfer — so treat neither axis as a verdict about loss quality.
+- Panel metrics do not crown a loss. In a downstream VAE-training A/B, the nights
+  model did **not** improve decoder FID — its strong FR correlations did not
+  transfer — so treat neither axis as a verdict about loss quality.
 - Checkpoints are the adapter tensors only; each release's frozen tower is
   supplied by the user (never shipped).
 
