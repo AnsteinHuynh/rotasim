@@ -1,0 +1,74 @@
+artifact : step001200.pt  1687 KB
+sha256   : 2f7a0d2e019344a25d56179c36c8c20ecc25f3facf1a4a86c1b061869e03db0f
+step     : 1200
+metrics  : None
+spec     : image_size=544 random_aspect=True block_size=32 oft_scaled=True oft_targets=<absent -> default q,k,v> oft_prefix=<absent -> per-backbone default> backbones=('dinov3_vitb16',)
+
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 211/211 [00:00<00:00, 6767.90it/s]
+[pos-resize] no embeddings.position_embedding -> assuming positions are relative (RoPE) and the tower is already resolution-flexible
+[backbones] dinov3_vitb16      dim=768  params=  85.66M  oft_prefix='model.layer.'  image_size=544  grad-ckpt
+[oft] wrapped 36 Linear layers with OFTv2 (block_size=32, block_share=False, scaled=True, dropout=0.0)
+[oft] trainable OFT params: 428,544
+        e.g. tower.model.layer.0.attention.k_proj
+        e.g. tower.model.layer.0.attention.v_proj
+        e.g. tower.model.layer.0.attention.q_proj
+[model] OFT tags set: {'oft': 36, 'oft_scaled': 36, 'lora_a': 0, 'lora_b': 0, 'dora_scale': 0, 'doft_magnitude': 0}
+[model] trainable 428,544 / 86,088,960 params (0.4978%)
+[oft-metric] loaded step=1200 image_size=544 preprocess=centre-square per_branch_norm=False amp=off
+load     : 7.8s
+params   : 86.09M total, 0 trainable (metric is FROZEN)
+
+OFT SURFACE (asserted, not read from config)
+  wrapped OFTLinears  : 36
+  wrapped kinds       : ['k_proj', 'q_proj', 'v_proj']
+  e.g.                : branches.0.tower.model.layer.0.attention.k_proj
+  e.g.                : branches.0.tower.model.layer.11.attention.q_proj
+  => 12 transformer layers x 3 projections (q,k,v)
+
+CONTRACT x in [-1,1] at 1024px -> internal 544px
+  d(x,x)          : [0.0, 0.0, 0.0, 0.0]   (must be exactly 0.0)
+  shape           : (4,)  (contract wants (N,)=(4,))
+  d(x,y)          : [0.02503, 0.01001, 0.01297, 0.00169]
+  all finite, >0  : True True
+  grad to input   : YES nonzero=True max|g|=1.076e-02
+  square short-circ: bit-identical to the 1024px value  YES
+
+PREPROCESSING (this is part of the model, not a detail)
+  the ASPECT-native policy this artifact was trained under (one of 5 buckets per
+  row) is an evaluation protocol, not a loss-time contract; centre-square is what
+  the loss uses and it reproduced the banked headline exactly (see README).
+  square 1024x1024           centre-square 0.00003   squash 0.00022   delta +567.8%
+  non-square 1024x512 (2:1)  centre-square 0.00116   squash 0.00080   delta -31.1%
+
+SENSITIVITY SCALE (real NIGHTS images, batch 8)
+[data] pt cache: OFF -- decoding PNG/BMP source images
+  corroborating perception (ref vs the corpus's two candidates)
+    d(ref,left)                d = 0.32159   d(ref,right) d = 0.39125
+  unrelated real scene         d = 0.91281
+  symmetric noise, real image
+    gaussian sigma= 1/255      d = 0.00002
+    gaussian sigma= 2/255      d = 0.00008
+    gaussian sigma= 4/255      d = 0.00067
+    gaussian sigma= 8/255      d = 0.00440
+    gaussian sigma=16/255      d = 0.01767
+  structural corruption, real image
+    3x3 box blur               d = 0.01718
+    5x5 box blur               d = 0.05512
+    2x down-up resample        d = 0.02512
+    coarse mottle 6/255        d = 0.00028
+  READ: on REAL content the metric is dominated by STRUCTURE -- the smearing a
+  VAE decoder actually produces (box blur, down-up resample) -- while low-amplitude
+  noise stays near zero. Charge for smearing, not for imperceptible dither, and
+  set the weight against THIS table rather than inheriting an LPIPS weight.
+  CAVEAT, weigh it yourself from the rows above: if the 'unrelated real scene'
+  row is CLOSER than a real artefact pair, this is a QUALITY-preference metric,
+  not a content-identity one. As a loss it belongs on a RECONSTRUCTION pair
+  (content tied by construction) and ideally beside a pixel/content term -- it
+  cannot by itself stop a decoder from drifting in content while looking clean.
+
+COST (frozen metric as a loss term, fp32)
+  batch  8 @ 512px: 1194 ms/step  peak 4410 MiB
+  batch 16 @ 512px: 1410 ms/step  peak 8099 MiB
+
+VALIDATION PASSED

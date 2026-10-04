@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rotasim"
+version = "1.0.0"
+description = "ROtations Trained as Adapters for perceptual SIMilarity — frozen-tower OFTv2 perceptual metrics"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.1",
+    "numpy",
+    "pillow",
+]
+
+[project.optional-dependencies]
+# Resolving the Qwen release's user-supplied tower (HF directory route).
+# transformers must be >=5 — the 4.x OFT surface walk fails on the Qwen tower.
+qwen = ["safetensors", "transformers>=5"]
+# Re-training the released adapters (the checkpoints were trained with SinkSGD_adv).
+train = ["adv_optm"]
+
+[project.urls]
+Homepage = "https://github.com/AnsteinHuynh/rotasim"
+
+[tool.setuptools]
+packages = ["dreamsim_oft"]

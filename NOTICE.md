@@ -26,10 +26,15 @@ each item's own license governs its use.
 
 ## Training data (checkpoints)
 
-- **DiffIQA** (A-FINE, CVPR 2025; github.com/ChrisDud0257/AFINE) —
-  non-commercial, research-only dataset terms, including for derived data;
-  hence the CC-BY-NC-4.0 license on the released adapter weights. Please cite
-  the A-FINE paper when using the checkpoints.
+- **DiffIQA** (A-FINE, CVPR 2025; github.com/ChrisDud0257/AFINE) — the two
+  `*-diffiqa-v1` adapters. Non-commercial, research-only dataset terms,
+  including for derived data; hence the CC-BY-NC-4.0 license on those weights.
+  Please cite the A-FINE paper when using them.
+- **NIGHTS** (DreamSim, github.com/ssundaram21/dreamsim) — the
+  `rotasim-dinov3b-nights-544-v1` adapter. MIT-licensed repository, no
+  non-commercial clause; that checkpoint is Apache-2.0. Cite the DreamSim
+  papers when using it. The dataset images (Stable Diffusion 2.1 generations)
+  are not shipped.
 
 ## Frozen towers (not shipped)
 

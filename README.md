@@ -6,7 +6,7 @@ RotaSim metrics are perceptual similarity models built from a **frozen vision
 tower + OFTv2 orthogonal rotation adapters**: instead of finetuning a backbone,
 each adapted linear layer learns a block-diagonal orthogonal rotation of its
 input (a Cayley transform of a skew-symmetric parameter), leaving the pretrained
-weights untouched. The released artifacts are tiny — **1.3M–2.3M trainable
+weights untouched. The released artifacts are tiny — **428K–2.3M trainable
 parameters** on top of towers the user already has.
 
 The core empirical finding of the project: **the two axes of perceptual-metric
@@ -27,6 +27,7 @@ misrepresents every model below — always read both.
 |---|---|---|---|---|
 | [`rotasim-dinov3b-diffiqa-v1`](releases/rotasim-dinov3b-diffiqa-v1/) **(recommended)** | DINOv3-B/16 (86M, frozen) | 1.29M | **0.7250** (argmax@1300) | 0.7180 (.7248@1250) |
 | [`rotasim-qwen38vit-diffiqa-v1`](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B vision tower (460.7M, frozen, not shipped) | 2.32M | 0.7090 (argmax@2800) | **0.7368** |
+| [`rotasim-dinov3b-nights-544-v1`](releases/rotasim-dinov3b-nights-544-v1/) | DINOv3-B/16 (86M, frozen) | 0.43M | 0.6903 | 0.8133 |
 
 For scale: published-protocol lpips-vgg sits at ~0.7372 GM12 — the Qwen model
 reaches within 0.0004 of it; the DINO model within 0.012 with ~11× fewer
@@ -61,18 +62,22 @@ pixel/content term (both bundle READMEs carry this caveat).
 ## Honest-caveats corner
 
 - The headline numbers are **single training draws**; measured run-level noise
-  on these protocols is ~0.7pp. Differences between the two models smaller
-  than that should not be over-read.
-- Panel metrics do not crown a loss. Downstream proof (does training a decoder
-  *with* RotaSim as a loss improve the decoder?) is a separate experiment and
-  not claimed here.
+  on these protocols is ~0.7pp. Differences between models smaller than that
+  should not be over-read.
+- Panel metrics do not crown a loss. On the sister project's downstream VAE A/B,
+  the nights model did **not** improve decoder FID — its strong FR correlations
+  did not transfer — so treat neither axis as a verdict about loss quality.
+- Checkpoints are the adapter tensors only; each release's frozen tower is
+  supplied by the user (never shipped).
 
 ## License & credits
 
 - **Code:** Apache-2.0 (see [LICENSE](LICENSE), [NOTICE.md](NOTICE.md)).
-- **Adapter checkpoints:** CC-BY-NC-4.0. They were trained on the DiffIQA
-  dataset (A-FINE, CVPR 2025), whose terms restrict derived data to
-  non-commercial research use — cite the dataset paper when you use them.
+- **Adapter checkpoints:** license depends on the training corpus, and each
+  bundle states it in its own `WEIGHTS-LICENSE.md`: the two `*-diffiqa-v1`
+  checkpoints are **CC-BY-NC-4.0** (DiffIQA / A-FINE terms restrict derived data
+  to non-commercial research — cite that paper); the `*-nights-544-v1` checkpoint
+  is **Apache-2.0** (NIGHTS / DreamSim has no non-commercial clause).
 - **Frozen towers are not shipped.** DINOv3 (Apache-2.0) resolves
   automatically; the Qwen release points at your own copy of the Qwen3.8-27B
   checkpoint or its llama.cpp mmproj file (see its README).

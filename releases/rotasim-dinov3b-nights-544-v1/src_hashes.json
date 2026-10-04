@@ -1,0 +1,15 @@
+{
+  "__init__.py": "548ccb08e6de26cc",
+  "as_loss.py": "0c0ceb94de43b8ee",
+  "backbones.py": "8551d51d71080ab0",
+  "data.py": "0eff4f9776df79b8",
+  "logutil.py": "739115268c42fca9",
+  "loss.py": "26507a489818d94e",
+  "model.py": "fa83d59fbaada6da",
+  "oft.py": "583a6114b31e15bb",
+  "pixel_cache.py": "b2c672c0fd322835",
+  "qwen_vision.py": "a0f321ca655726a2",
+  "resize.py": "2dae84d89d97c3ad",
+  "tagging.py": "0406ff77fdabdb00",
+  "train.py": "36dd0c3583cff50c"
+}
