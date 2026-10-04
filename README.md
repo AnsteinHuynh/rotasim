@@ -1,7 +1,82 @@
 # RotaSim
 
 **ROtations Trained as Adapters for perceptual SIMilarity.**
+[Written by a human, proofread by AI]
 
+Hello~!
+
+# What is this
+These are models that tell how similar image A is to image B, by telling you a number.
+
+# How
+You take a vision model, and then you train it with pictures: you give it three pictures; one is the reference, and one is the 'good' one and the other is the 'bad' one. What's good or bad is set by what real life humans voted for. 
+
+## How special is this model?
+You're unlocking the hidden potential of any vision models! 
+
+So normally, when vision models are trained to do a task, they specialize in one area, and are meant to be used for what they are designed for.
+
+For Dino's case, it looks at a picture and describes what's in it with numbers that captures its understanding of what the picture shows
+For Qwen3.8's case, it's meant to provide tokens embedding, or 'words' representations for the LLM to see pictures
+These models can tell a car from a bike, but have no opinion about whether a photo looks good or bad.
+
+So you train it with a reference, a good, and a bad.
+
+## The way of Training and Rotations
+When you train these models, you're either finetuning it (changing the weights of the entire model), or adding a learned Lora (a model on top of a model)
+
+I'm sure you've seen some ai generated pictures that look 'burnt' or over saturated.
+
+Why?
+
+It's the AI trying to use a hammer on everything.
+
+Regular loras add information about the training to the base model
+if you add too much information, the model basically forgets itself. In other words, it starts forgetting whatever the original information was taught to it, so for example, forgetting what a bike is, and only remembering bikes it saw during training. If it sees a motorcycle, it would think it's a bike instead of a motorcycle. 
+Finetuning has this same problem - it starts forgetting.
+
+
+The fix is OFT LoRA with orthogonal rotations. It's an adapter like LoRA which preserves the geometry of the base model. 
+
+So think of a scrambled rubiks cube (the base model). You want a perfectly solved rubiks cube (The thing you're trying to train for)
+A regular lora / fine tune could learn to: rotate the cube, paint the cube, put different colored stickers on the cube, add extra cubes, remove cubes.
+
+But with orthogonal rotations? It only rotates! A rotation adds nothing extra and can always be undone.
+So the adapter model is like a set of instructions to tell how the model rotates to achieve the perfect cube.
+
+So really, all you're training is the instructions list. For this project these models are really tiny, because they're rotational instructions on how to turn a base model into a model that works for you.
+
+# Methods
+These were trained using ALL the latest SOTA methods I could think of. I dug through the community's best tricks, I tested, tested, and tested again which terms added or helped.
+Some of the methods that went into this model I could think of off the top of my head:
+OFTv2, Orthogonal Finetuning, the adapter method this project is built on. I was inspired mostly by how good these loras are from seeing initial results from my own sd1.5 and sdxl training from kohya-ss https://github.com/bmaltais/kohya_ss and OneTrainer https://github.com/Nerogar/OneTrainer and also seeing how oneTrainer's community also highly praised OFT. These also have papers backing it (OFT, NeurIPS 2023; OFTv2, CVPR 2024)
+SinkSGD_ADV, Sinkhorn optimizer, an advanced optimizer from Koratahiu https://github.com/Koratahiu/Advanced_Optimizers
+Diffiq, an advanced dataset, the dataset is legitimately 'hard' https://github.com/ChrisDud0257/AFINE
+## Pre-trained models
+DinoV3 ViT-B/16, a discriminator model, in my opinion, an advanced form of YOLO but at the modern end of 2025.
+qwen3.8, the vision tower, 2026 grade trained model - needs no introduction of how amazing qwen38 is for locally run models
+
+## Optimizations
+[in-progress]
+A lot of optimizations had to be done while still keeping the training excellent, including things you normally don't consider 'training'
+The evaluations. I estimate I still spend 15-30% of the project's time on evaluating and validating checkpoints and checkpoints in between
+The caching of images. Cuts down gpu-cpu level re-computations of stuff you've already calculated
+The cache for the cache
+
+
+
+# Benchmarks
+[cleaned-up benchmarks in-progress]
+
+# Technicals
+[in-progress]
+
+# Surprises and 'gotchas' during this project
+[in-progress]
+
+
+
+[Written and summarized by AI]
 RotaSim metrics are perceptual similarity models built from a **frozen vision
 tower + OFTv2 orthogonal rotation adapters**: instead of finetuning a backbone,
 each adapted linear layer learns a block-diagonal orthogonal rotation of its
