@@ -1,8 +1,8 @@
 # RotaSim
 
-**ROtations Trained as Adapters for perceptual SIMilarity.**
+*[Written by a human, proofread by AI]*
 
-[Written by a human, proofread by AI]
+**ROtations Trained as Adapters for perceptual SIMilarity.**
 
 Hello~!
 
@@ -92,9 +92,9 @@ The cache for the cache
 
 # RotaSim
 
-**ROtations Trained as Adapters for perceptual SIMilarity.**
+*[Written and summarized by AI]*
 
-[Written and summarized by AI]
+**ROtations Trained as Adapters for perceptual SIMilarity.**
 
 RotaSim metrics are perceptual similarity models built from a **frozen vision
 tower + OFTv2 orthogonal rotation adapters**: instead of finetuning a backbone,
