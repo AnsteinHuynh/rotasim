@@ -90,7 +90,12 @@ The cache for the cache
 
 
 
+# RotaSim
+
+**ROtations Trained as Adapters for perceptual SIMilarity.**
+
 [Written and summarized by AI]
+
 RotaSim metrics are perceptual similarity models built from a **frozen vision
 tower + OFTv2 orthogonal rotation adapters**: instead of finetuning a backbone,
 each adapted linear layer learns a block-diagonal orthogonal rotation of its
