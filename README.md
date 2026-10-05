@@ -98,7 +98,7 @@ The cache for the cache
 | pyiqa l1 | — | — | — | 0.6149 (.7097/.7010/.4342) | 0.4751 | .423/.488/.347 | — |
 | pyiqa psnr | — | — | — | 0.6122 (.7216/.6842/.4306) | 0.6317 | .660/.687/.496 | — |
 | pyiqa lpips | — | — | BAPPS | 0.6744 (.7037/.8289/.4904) | 0.7400 | .753/.744/.548 | — |
-| dreamsim (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | — | DreamSim | 0.6748 (.7133/.8325/.4785) | 0.7608 | .746/.813/.615 | 96.9/96.2 |
+| [dreamsim](https://github.com/ssundaram21/dreamsim) (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | — | DreamSim | 0.6748 (.7133/.8325/.4785) | 0.7608 | .746/.813/.615 | 96.9/96.2 |
 | dreamsim (dino_vitb16) | DINOv2-B/16 | — | DreamSim | 0.6919 (.7551/.8349/.4856) | 0.7571 | .712/.832/.631 | 95.6/94.8 |
 
 Each row is that release's selected checkpoint (argmax on its own selection axis). The
@@ -110,8 +110,16 @@ its published NIGHTS numbers; all other cells are measured by us under one proto
 
 For scale: the Qwen model's FR mean (0.7368) matches published-protocol lpips-vgg
 (~0.7372) to within 0.0004, and the fgbadi60 model lands above it — all with ~11× fewer
-trained parameters than lpips-vgg's head+trunk adaptation. Caveat: every row here is scored
-under **our** protocol (our own LIVE DMOS labels), so read the cross-row gaps as indicative.
+trained parameters than lpips-vgg's head+trunk adaptation.
+
+**Why the FR cells can differ from the published IQA-PyTorch table.** On CSIQ, TID2008 and
+TID2013 every baseline row above reproduces the published table **exactly** (to 4 dp). The
+**LIVE** cells are the only difference, and it is a ground-truth-label variant, not a
+protocol difference: pyiqa's LIVE dataset ships two DMOS files, and the published table used
+`dmos_realigned.mat` while we (like pyiqa's own `scripts/process_live.py`) use `dmos.mat`.
+Re-scoring the *identical* predictions against each reproduces both rows to the digit. Our
+checkpoints are scored on the same `dmos.mat` pair lists, so the whole table is kept on that
+one convention deliberately — do not splice the published LIVE numbers in.
 
 Each release directory is **self-contained**: checkpoint, a vendored
 `dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a
