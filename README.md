@@ -119,12 +119,12 @@ misrepresents every model below — always read both.
 
 ## Releases
 
-| Model | Tower | Base | Trained | Dataset | Our benchmark mean ([FGResQ](https://github.com/sxfly99/FGResQ)/[BAPPS](https://huggingface.co/datasets/chaofengc/IQA-PyTorch-Datasets/tree/main)/[DiffIQA](https://github.com/ChrisDud0257/AFINE)) | [FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv) | TID2013 (PLCC/SRCC/KRCC) |
-|---|---|---|---|---|---|---|---|
-| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | DINOv3-B/16 | 86M | 1.29M | FGResQ + BAPPS + DiffIQA | **0.7533** (.7384/.8553/.6663) | **0.7515** | .762/.707/.524 |
-| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 | 86M | 1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7180 | .712/.688/.508 |
-| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M | 2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7368 | .661/.779/.585 |
-| [nights](releases/rotasim-dinov3b-nights-v1/) | DINOv3-B/16 | 86M | 0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.8133 | .834/.824/.628 |
+| Model | Tower | Base/Trained | Dataset | Our benchmark mean ([FGResQ](https://github.com/sxfly99/FGResQ)/[BAPPS](https://huggingface.co/datasets/chaofengc/IQA-PyTorch-Datasets/tree/main)/[DiffIQA](https://github.com/ChrisDud0257/AFINE)) | [FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv) | TID2013 (PLCC/SRCC/KRCC) |
+|---|---|---|---|---|---|---|
+| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | DINOv3-B/16 | 86M/1.29M | FGResQ + BAPPS + DiffIQA | **0.7533** (.7384/.8553/.6663) | **0.7515** | .762/.707/.524 |
+| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 | 86M/1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7180 | .712/.688/.508 |
+| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M/2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7368 | .661/.779/.585 |
+| [nights](releases/rotasim-dinov3b-nights-v1/) | DINOv3-B/16 | 86M/0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.8133 | .834/.824/.628 |
 
 Benchmark corpora are linked in the column header; the nights model is trained on [NIGHTS](https://github.com/ssundaram21/dreamsim/tree/main/dataset).
 
