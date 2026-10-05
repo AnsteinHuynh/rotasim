@@ -108,26 +108,28 @@ parameters** on top of towers the user already has.
 The core empirical finding of the project: **the two axes of perceptual-metric
 quality are near-independent.**
 
-- **Preference axis** — 2AFC accuracy on human preference panels (our S2 panel
-  over FGResQ / BAPPS / DiffIQA holdout cells).
-- **Fidelity axis** — correlation with human DMOS on synthetic full-reference
-  IQA benchmarks (our GM12 grand mean over {CSIQ, LIVE, TID2008, TID2013} ×
-  {PLCC, SRCC, KRCC}).
+- **Preference axis** — 2AFC accuracy on human preference panels: the mean of our
+  three holdout cells, **fgresq / bapps / diffiqa**.
+- **Fidelity axis** — correlation with human DMOS on the [IQA-PyTorch full-reference
+  benchmark](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv):
+  the mean of its 12 cells ({CSIQ, LIVE, TID2008, TID2013} × {PLCC, SRCC, KRCC}).
 
 Training for one does not buy the other. Quoting any single-axis number alone
 misrepresents every model below — always read both.
 
 ## Releases
 
-| model | tower | trainable | preference (S2 composite) | fidelity (GM12) |
+| model | tower | trainable | preference (fgresq/bapps/diffiqa mean) | fidelity ([FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv)) |
 |---|---|---|---|---|
-| [`rotasim-dinov3b-diffiqa-v1`](releases/rotasim-dinov3b-diffiqa-v1/) **(recommended)** | DINOv3-B/16 (86M, frozen) | 1.29M | **0.7250** (argmax@1300) | 0.7180 (.7248@1250) |
-| [`rotasim-qwen38vit-diffiqa-v1`](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B vision tower (460.7M, frozen, not shipped) | 2.32M | 0.7090 (argmax@2800) | **0.7368** |
+| [`rotasim-dinov3b-fgbadi60-288-v1`](releases/rotasim-dinov3b-fgbadi60-288-v1/) **(recommended)** | DINOv3-B/16 (86M, frozen) | 1.29M | **0.7533** (fg .7384 / ba .8553 / di .6663) | **0.7515** (@825) |
+| [`rotasim-dinov3b-diffiqa-v1`](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 (86M, frozen) | 1.29M | 0.7250 (argmax@1300) | 0.7180 (.7248@1250) |
+| [`rotasim-qwen38vit-diffiqa-v1`](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B vision tower (460.7M, frozen, not shipped) | 2.32M | 0.7090 (argmax@2800) | 0.7368 |
 | [`rotasim-dinov3b-nights-544-v1`](releases/rotasim-dinov3b-nights-544-v1/) | DINOv3-B/16 (86M, frozen) | 0.43M | 0.6903 | 0.8133 |
 
-For scale: published-protocol lpips-vgg sits at ~0.7372 GM12 — the Qwen model
-reaches within 0.0004 of it; the DINO model within 0.012 with ~11× fewer
-trained parameters than lpips-vgg's head+trunk adaptation.
+For scale: published-protocol lpips-vgg sits at ~0.7372 FR-benchmark mean — the Qwen
+model matches it to within 0.0004, and the new fgbadi60 model lands above it, all with
+~11× fewer trained parameters than lpips-vgg's head+trunk adaptation. Caveat: our LIVE
+cells use our own DMOS labels, so these cross-row gaps are indicative, not exact.
 
 Each release directory is **self-contained**: checkpoint, a vendored
 `dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a

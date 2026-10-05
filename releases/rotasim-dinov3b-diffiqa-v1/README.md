@@ -5,7 +5,8 @@ A perceptual similarity metric: a **frozen DINOv3-B/16 tower** (86M) plus **OFTv
 orthogonal rotation adapters** (all six linear kinds, block 32) on the DiffIQA
 PNY+SNY corpus with 3-rater vote-gap weighting. **1.29M trainable parameters.**
 
-This is the **recommended RotaSim checkpoint** (the preference-axis champion).
+This was the first **preference-axis champion** of RotaSim; the current
+**recommended** checkpoint is `rotasim-dinov3b-fgbadi60-288-v1`.
 
 ## Two-axis results (always quote both — the axes are near-independent)
 

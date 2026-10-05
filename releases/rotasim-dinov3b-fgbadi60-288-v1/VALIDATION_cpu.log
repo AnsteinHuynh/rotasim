@@ -1,0 +1,18 @@
+[device] cpu
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 7305.34it/s]
+[pos-resize] no embeddings.position_embedding -> assuming positions are relative (RoPE) and the tower is already resolution-flexible
+[backbones] dinov3_vitb16      dim=768  params=  85.66M  oft_prefix='model.layer.'  image_size=288  grad-ckpt
+[oft] wrapped 72 Linear layers with OFTv2 (block_size=32, block_share=False, scaled=True, dropout=0.0)
+[oft] trainable OFT params: 1,285,632
+        e.g. tower.model.layer.0.attention.k_proj
+        e.g. tower.model.layer.0.attention.v_proj
+        e.g. tower.model.layer.0.attention.q_proj
+[model] OFT tags set: {'oft': 72, 'oft_scaled': 72, 'lora_a': 0, 'lora_b': 0, 'dora_scale': 0, 'doft_magnitude': 0}
+[model] trainable 1,285,632 / 86,946,048 params (1.4787%)
+[oft-metric] loaded step=825 image_size=288 preprocess=centre-square per_branch_norm=False amp=off
+[step000825.pt] d(x,x)==0: PASS
+[step000825.pt] d(x,y)>0 finite: PASS
+[step000825.pt] grad reaches both args: PASS
+[step000825.pt] per-image shape (N,): PASS
+[step000825.pt] d(x,y) = [0.0339, 0.0308, 0.0293, 0.0332, 0.0322, 0.0323, 0.0333, 0.0327]
+[validate_bundle] PASS
