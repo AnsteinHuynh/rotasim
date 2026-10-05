@@ -10,7 +10,7 @@ Hello~!
 
 These are models that tell how similar image A is to image B, by telling you a number.
 
-Inspired by Dreamsim. Saw that Dreamsim was training with DinoV1/V2, thought I could upgrade it by training a new model with DinoV3 [`rotasim-dinov3b-nights-544-v1`](releases/rotasim-dinov3b-nights-544-v1/).  
+Inspired by Dreamsim. Saw that Dreamsim was training with DinoV1/V2, wanted to upgrade by training a new model with DinoV3 [`rotasim-dinov3b-nights-544-v1`](releases/rotasim-dinov3b-nights-544-v1/).  
 
 # How
 
