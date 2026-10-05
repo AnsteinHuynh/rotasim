@@ -6,7 +6,7 @@ orthogonal rotation adapters** (all six linear kinds, block 32) on the DiffIQA
 PNY+SNY corpus with 3-rater vote-gap weighting. **1.29M trainable parameters.**
 
 This was the first **preference-axis champion** of RotaSim; the current
-**recommended** checkpoint is `rotasim-dinov3b-fgbadi60-288-v1`.
+**recommended** checkpoint is `rotasim-dinov3b-fgbadi60-v1`.
 
 ## Two-axis results (always quote both — the axes are near-independent)
 

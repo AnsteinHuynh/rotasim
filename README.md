@@ -10,7 +10,7 @@ Hello~!
 
 These are models that tell how similar image A is to image B, by telling you a number.
 
-Inspired by Dreamsim. Saw that Dreamsim was training with DinoV1/V2, wanted to upgrade by training a new model with DinoV3 [`rotasim-dinov3b-nights-544-v1`](releases/rotasim-dinov3b-nights-544-v1/).  
+Inspired by Dreamsim. Saw that Dreamsim was training with DinoV1/V2, wanted to upgrade by training a new model with DinoV3 [`rotasim-dinov3b-nights-v1`](releases/rotasim-dinov3b-nights-v1/).  
 
 # How
 
@@ -119,12 +119,15 @@ misrepresents every model below — always read both.
 
 ## Releases
 
-| model | tower | trainable | preference (fgresq/bapps/diffiqa mean) | fidelity ([FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv)) |
-|---|---|---|---|---|
-| [`rotasim-dinov3b-fgbadi60-288-v1`](releases/rotasim-dinov3b-fgbadi60-288-v1/) **(recommended)** | DINOv3-B/16 (86M, frozen) | 1.29M | **0.7533** (fg .7384 / ba .8553 / di .6663) | **0.7515** (@825) |
-| [`rotasim-dinov3b-diffiqa-v1`](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 (86M, frozen) | 1.29M | 0.7250 (argmax@1300) | 0.7180 (.7248@1250) |
-| [`rotasim-qwen38vit-diffiqa-v1`](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B vision tower (460.7M, frozen, not shipped) | 2.32M | 0.7090 (argmax@2800) | 0.7368 |
-| [`rotasim-dinov3b-nights-544-v1`](releases/rotasim-dinov3b-nights-544-v1/) | DINOv3-B/16 (86M, frozen) | 0.43M | 0.6903 | 0.8133 |
+| model | Tower | base | trained | dataset | our benchmark mean (fgresq/bapps/diffiqa) | [FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv) | TID2013 (PLCC/SRCC/KRCC) |
+|---|---|---|---|---|---|---|---|
+| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | DINOv3-B/16 | 86M | 1.29M | FGResQ + BAPPS + DiffIQA | **0.7533** | **0.7515** | .762/.707/.524 |
+| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 | 86M | 1.29M | DiffIQA (PNY+SNY) | 0.7250 | 0.7180 | .712/.688/.508 |
+| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M | 2.32M | DiffIQA (PNY+SNY) | 0.7090 | 0.7368 | .661/.779/.585 |
+| [nights](releases/rotasim-dinov3b-nights-v1/) | DINOv3-B/16 | 86M | 0.43M | NIGHTS 2AFC | 0.6903 | 0.8133 | .834/.824/.628 |
+
+Each row is that release's selected checkpoint (argmax on its own selection axis). The
+Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
 
 For scale: published-protocol lpips-vgg sits at ~0.7372 FR-benchmark mean — the Qwen
 model matches it to within 0.0004, and the new fgbadi60 model lands above it, all with
@@ -136,8 +139,10 @@ Each release directory is **self-contained**: checkpoint, a vendored
 `validate_bundle.py` self-test (`python validate_bundle.py <bundle_dir>`).
 Start with the bundle READMEs:
 
+- [releases/rotasim-dinov3b-fgbadi60-v1/README.md](releases/rotasim-dinov3b-fgbadi60-v1/README.md)
 - [releases/rotasim-dinov3b-diffiqa-v1/README.md](releases/rotasim-dinov3b-diffiqa-v1/README.md)
 - [releases/rotasim-qwen38vit-diffiqa-v1/README.md](releases/rotasim-qwen38vit-diffiqa-v1/README.md)
+- [releases/rotasim-dinov3b-nights-v1/README.md](releases/rotasim-dinov3b-nights-v1/README.md)
 
 ## Quickstart (as a differentiable loss)
 
@@ -174,7 +179,7 @@ pixel/content term (both bundle READMEs carry this caveat).
 - **Adapter checkpoints:** license depends on the training corpus, and each
   bundle states it in its own `WEIGHTS-LICENSE.md`: the two `*-diffiqa-v1`
   checkpoints are **CC-BY-NC-4.0** (DiffIQA / A-FINE terms restrict derived data
-  to non-commercial research — cite that paper); the `*-nights-544-v1` checkpoint
+  to non-commercial research — cite that paper); the `*-nights-v1` checkpoint
   is **Apache-2.0** (NIGHTS / DreamSim has no non-commercial clause).
 - **Frozen towers are not shipped.** DINOv3 (Apache-2.0) resolves
   automatically; the Qwen release points at your own copy of the Qwen3.8-27B

@@ -1,4 +1,4 @@
-# HOWTO — rotasim-dinov3b-fgbadi60-288-v1
+# HOWTO — rotasim-dinov3b-fgbadi60-v1
 
 This bundle is **self-contained**: the checkpoint, a vendored `dreamsim_oft/`
 library, a validator, and the benchmark CSV. Nothing else to install beyond

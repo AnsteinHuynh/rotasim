@@ -1,4 +1,4 @@
-# rotasim-dinov3b-fgbadi60-288-v1
+# rotasim-dinov3b-fgbadi60-v1
 
 **RotaSim** — ROtations Trained as Adapters for perceptual SIMilarity.
 A perceptual similarity metric: a **frozen DINOv3-B/16 tower** (86M) plus **OFTv2

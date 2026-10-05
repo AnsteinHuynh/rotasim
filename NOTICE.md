@@ -31,7 +31,7 @@ each item's own license governs its use.
   including for derived data; hence the CC-BY-NC-4.0 license on those weights.
   Please cite the A-FINE paper when using them.
 - **NIGHTS** (DreamSim, github.com/ssundaram21/dreamsim) — the
-  `rotasim-dinov3b-nights-544-v1` adapter. MIT-licensed repository, no
+  `rotasim-dinov3b-nights-v1` adapter. MIT-licensed repository, no
   non-commercial clause; that checkpoint is Apache-2.0. Cite the DreamSim
   papers when using it. The dataset images (Stable Diffusion 2.1 generations)
   are not shipped.

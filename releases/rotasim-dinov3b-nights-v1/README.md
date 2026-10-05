@@ -13,7 +13,7 @@ library_name: pytorch
 
 # RotaSim — ROtations Trained as Adapters for perceptual SIMilarity
 
-**RotaSim-dinov3b-nights-544** is a full-reference perceptual similarity metric: it takes two
+**RotaSim-dinov3b-nights** is a full-reference perceptual similarity metric: it takes two
 images and returns a scalar distance that agrees with human judgments of perceptual similarity.
 It is **not a finetune** — the entire trained artifact is a bag of 36 **OFTv2 block-orthogonal
 rotations** (block size 32) injected into the q/k/v attention projections of a **frozen
@@ -74,7 +74,7 @@ Validated runtimes: `python 3.14.3 / torch 2.13.0+cu132 / transformers 5.5.4` an
 ```bash
 pip install torch transformers huggingface_hub   # or your usual stack
 git clone https://github.com/AnsteinHuynh/rotasim.git
-cd rotasim/releases/rotasim-dinov3b-nights-544-v1
+cd rotasim/releases/rotasim-dinov3b-nights-v1
 ```
 
 ### Getting the backbone (one-time, required)
@@ -148,7 +148,7 @@ none of these four datasets were seen in training.
 | lpips | 0.923 | 0.924 | 0.715 | 0.745 |
 | lpips-vgg | 0.883 | 0.932 | 0.654 | 0.670 |
 | dists | 0.930 | 0.948 | 0.665 | 0.708 |
-| **rotasim-dinov3b-nights-544** | **0.941** | **0.920** | **0.812** | **0.824** |
+| **rotasim-dinov3b-nights** | **0.941** | **0.920** | **0.812** | **0.824** |
 | topiq_fr | 0.967 | 0.976 | 0.923 | 0.917 |
 
 Full table with PLCC/KRCC and every reference metric: `fr_benchmark_results.csv`. The complete
@@ -290,6 +290,6 @@ LICENSE-DINOV3                 Meta's DINOv3 License (the frozen backbone)
   title   = {RotaSim: ROtations Trained as Adapters for perceptual SIMilarity},
   year    = {2026},
   url     = {https://github.com/AnsteinHuynh/rotasim},
-  note    = {rotasim-dinov3b-nights-544, adapter checkpoint step001200}
+  note    = {rotasim-dinov3b-nights-v1, adapter checkpoint step001200}
 }
 ```
