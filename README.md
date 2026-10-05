@@ -121,10 +121,10 @@ misrepresents every model below — always read both.
 
 | model | Tower | base | trained | dataset | our benchmark mean (fgresq/bapps/diffiqa) | [FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv) | TID2013 (PLCC/SRCC/KRCC) |
 |---|---|---|---|---|---|---|---|
-| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | DINOv3-B/16 | 86M | 1.29M | FGResQ + BAPPS + DiffIQA (PNY+SNY) | **0.7533** | **0.7515** | .762/.707/.524 |
-| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 | 86M | 1.29M | DiffIQA (PNY+SNY) | 0.7250 | 0.7180 | .712/.688/.508 |
-| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M | 2.32M | DiffIQA (PNY+SNY) | 0.7090 | 0.7368 | .661/.779/.585 |
-| [nights](releases/rotasim-dinov3b-nights-v1/) | DINOv3-B/16 | 86M | 0.43M | NIGHTS 2AFC | 0.6903 | 0.8133 | .834/.824/.628 |
+| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | DINOv3-B/16 | 86M | 1.29M | [FGResQ](https://github.com/sxfly99/FGResQ) + [BAPPS](https://huggingface.co/datasets/chaofengc/IQA-PyTorch-Datasets/tree/main) + [DiffIQA](https://github.com/ChrisDud0257/AFINE) | **0.7533** | **0.7515** | .762/.707/.524 |
+| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 | 86M | 1.29M | [DiffIQA](https://github.com/ChrisDud0257/AFINE) | 0.7250 | 0.7180 | .712/.688/.508 |
+| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M | 2.32M | [DiffIQA](https://github.com/ChrisDud0257/AFINE) | 0.7090 | 0.7368 | .661/.779/.585 |
+| [nights](releases/rotasim-dinov3b-nights-v1/) | DINOv3-B/16 | 86M | 0.43M | [NIGHTS](https://github.com/ssundaram21/dreamsim/tree/main/dataset) | 0.6903 | 0.8133 | .834/.824/.628 |
 
 Each row is that release's selected checkpoint (argmax on its own selection axis). The
 Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
