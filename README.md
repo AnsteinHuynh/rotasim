@@ -10,6 +10,8 @@ Hello~!
 
 These are models that tell how similar image A is to image B, by telling you a number.
 
+Inspired by Dreamsim. Saw that Dreamsim was training with DinoV1/V2, thought I could upgrade it by training a new model with DinoV3 [`rotasim-dinov3b-nights-544-v1`](releases/rotasim-dinov3b-nights-544-v1/).  
+
 # How
 
 You take a vision model, and then you train it with pictures: you give it three pictures; one is the reference, and one is the 'good' one and the other is the 'bad' one. What's good or bad is set by what real life humans voted for. 
