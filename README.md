@@ -91,7 +91,7 @@ The cache for the cache
 | [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7180 | .712/.688/.508 | — |
 | [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M/2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7368 | .661/.779/.585 | — |
 | [nights](releases/rotasim-dinov3b-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.8133 | .834/.824/.628 | 94.59/94.79 |
-| [3tower-nights](releases/rotasim-3tower-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) + SigLIP2-base/16 + MetaCLIP2-B/16 | 266M/1.29M | NIGHTS | — | 0.517 | .550/.526/.366 | 95.64/95.61 |
+| [3tower-nights](releases/rotasim-3tower-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) + [SigLIP2-base/16](https://github.com/google-research/big_vision/blob/main/big_vision/configs/proj/image_text/README_siglip2.md) + [MetaCLIP2-B/16](https://huggingface.co/docs/transformers/en/model_doc/metaclip_2) | 266M/1.29M | NIGHTS | — | 0.517 | .550/.526/.366 | 95.64/95.61 |
 | [pyiqa](https://github.com/chaofengc/IQA-PyTorch) topiq | — | — | KADID-10K | 0.6755 (.7503/.7943/.4821) | 0.8756 | .916/.917/.744 | — |
 | pyiqa ssim | — | — | — | 0.6277 (.7300/.6962/.4569) | 0.6576 | .656/.627/.455 | — |
 | pyiqa ms-ssim | — | — | — | 0.6241 (.7216/.6890/.4617) | 0.7667 | .782/.786/.605 | — |
