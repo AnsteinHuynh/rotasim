@@ -1,0 +1,19 @@
+{
+  "__init__.py": "786865b3c0de3bc6",
+  "as_loss.py": "483959ddd5a3ecd9",
+  "backbones.py": "71c7a5e8dcd3839c",
+  "bapps.py": "a1d2ebe2d5899a9d",
+  "data.py": "effe105aad9c15f5",
+  "diffiqa.py": "27ee88b9961035fc",
+  "logutil.py": "ab55d3620a9e1aef",
+  "loss.py": "88e3075f47ec4253",
+  "mixdata.py": "e79277a06ec77ccc",
+  "model.py": "50014747ca524b1d",
+  "oft.py": "fe8243883db7e641",
+  "pixel_cache.py": "6a1f78e1a94998c5",
+  "qwen_vision.py": "cc232ccebe41417b",
+  "resize.py": "2dae84d89d97c3ad",
+  "shardio.py": "6a4bbcb5f76944e1",
+  "tagging.py": "c050340af5fc8dd8",
+  "train.py": "44b9730f1a7058fe"
+}

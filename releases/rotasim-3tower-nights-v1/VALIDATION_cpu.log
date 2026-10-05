@@ -1,0 +1,34 @@
+[device] cpu
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 6656.27it/s]
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 31999), got 49406. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 31999), got 49407. This may result in unexpected behavior.
+[backbones] dinov3_vitb16      dim=768  params=  85.66M  oft_prefix='model.layer.'  image_size=224
+Loading weights:   0%|          | 0/408 [00:00<?, ?it/s]Loading weights: 100%|██████████| 408/408 [00:00<00:00, 6060.32it/s]
+[backbones] siglip2_base16     dim=768  params=  92.88M  oft_prefix='encoder.layers.'  image_size=224
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6794.63it/s]
+[backbones] metaclip2_b16      dim=512  params=  86.19M  oft_prefix='encoder.layers.'  image_size=224
+[oft] wrapped 36 Linear layers with OFTv2 (block_size=32, block_share=False, scaled=True, dropout=0.0)
+[oft] trainable OFT params: 428,544
+        e.g. tower.model.layer.0.attention.k_proj
+        e.g. tower.model.layer.0.attention.v_proj
+        e.g. tower.model.layer.0.attention.q_proj
+[oft] wrapped 36 Linear layers with OFTv2 (block_size=32, block_share=False, scaled=True, dropout=0.0)
+[oft] trainable OFT params: 428,544
+        e.g. tower.encoder.layers.0.self_attn.k_proj
+        e.g. tower.encoder.layers.0.self_attn.v_proj
+        e.g. tower.encoder.layers.0.self_attn.q_proj
+[oft] wrapped 36 Linear layers with OFTv2 (block_size=32, block_share=False, scaled=True, dropout=0.0)
+[oft] trainable OFT params: 428,544
+        e.g. tower.encoder.layers.0.self_attn.k_proj
+        e.g. tower.encoder.layers.0.self_attn.v_proj
+        e.g. tower.encoder.layers.0.self_attn.q_proj
+[model] OFT tags set: {'oft': 108, 'oft_scaled': 108, 'lora_a': 0, 'lora_b': 0, 'dora_scale': 0, 'doft_magnitude': 0}
+[model] trainable 1,285,632 / 266,022,912 params (0.4833%)
+[oft-metric] loaded step=1200 image_size=224 preprocess=centre-square per_branch_norm=False amp=off
+[oft-metric] training metrics on record: {'val_acc': 0.9563953488372093, 'val_loss': 0.13535651850492456, 'val_n': 1720}
+[step001200.pt] d(x,x)==0: PASS
+[step001200.pt] d(x,y)>0 finite: PASS
+[step001200.pt] grad reaches both args: PASS
+[step001200.pt] per-image shape (N,): PASS
+[step001200.pt] d(x,y) = [0.0385, 0.0367, 0.0372, 0.0364, 0.0378, 0.0363, 0.0371, 0.037]
+[validate_bundle] PASS

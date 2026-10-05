@@ -13,6 +13,8 @@ library_name: pytorch
 
 # RotaSim — ROtations Trained as Adapters for perceptual SIMilarity
 
+*[Written by AI]*
+
 **RotaSim-dinov3b-nights** is a full-reference perceptual similarity metric: it takes two
 images and returns a scalar distance that agrees with human judgments of perceptual similarity.
 It is **not a finetune** — the entire trained artifact is a bag of 36 **OFTv2 block-orthogonal

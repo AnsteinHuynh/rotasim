@@ -1,5 +1,7 @@
 # rotasim-qwen38vit-diffiqa-v1
 
+*[Written by AI]*
+
 **RotaSim** — ROtations Trained as Adapters for perceptual SIMilarity.
 A perceptual similarity metric: the **frozen vision tower of Qwen3.8-27B**
 (460.7M, ViT, 27 blocks, read at its merged 5120-d pooled output) plus **OFTv2

@@ -81,8 +81,48 @@ The cache for the cache
 
 
 
-# Benchmarks
-[cleaned-up benchmarks in-progress]
+# Releases and Benchmarks
+
+*For all benchmark numbers: higher is better.*
+
+| Model | Tower | Base/Trained | Dataset | Our benchmark mean ([FGResQ](https://github.com/sxfly99/FGResQ)/[BAPPS](https://huggingface.co/datasets/chaofengc/IQA-PyTorch-Datasets/tree/main)/[DiffIQA](https://github.com/ChrisDud0257/AFINE)) | [FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv) | TID2013 (PLCC/SRCC/KRCC) | NIGHTS (Val/Test) |
+|---|---|---|---|---|---|---|---|
+| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | FGResQ + BAPPS + DiffIQA | **0.7533** (.7384/.8553/.6663) | **0.7515** | .762/.707/.524 | — |
+| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7180 | .712/.688/.508 | — |
+| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M/2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7368 | .661/.779/.585 | — |
+| [nights](releases/rotasim-dinov3b-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.8133 | .834/.824/.628 | 94.59/94.79 |
+| [3tower-nights](releases/rotasim-3tower-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) + SigLIP2-base/16 + MetaCLIP2-B/16 | 266M/1.29M | NIGHTS | — | 0.517 | .550/.526/.366 | 95.64/95.61 |
+| [pyiqa](https://github.com/chaofengc/IQA-PyTorch) topiq | — | — | KADID-10K | 0.6755 (.7503/.7943/.4821) | 0.8756 | .916/.917/.744 | — |
+| pyiqa ssim | — | — | — | 0.6277 (.7300/.6962/.4569) | 0.6576 | .656/.627/.455 | — |
+| pyiqa ms-ssim | — | — | — | 0.6241 (.7216/.6890/.4617) | 0.7667 | .782/.786/.605 | — |
+| pyiqa l1 | — | — | — | 0.6149 (.7097/.7010/.4342) | 0.4751 | .423/.488/.347 | — |
+| pyiqa psnr | — | — | — | 0.6122 (.7216/.6842/.4306) | 0.6317 | .660/.687/.496 | — |
+| pyiqa lpips | — | — | BAPPS | 0.6744 (.7037/.8289/.4904) | 0.7400 | .753/.744/.548 | — |
+| dreamsim (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | — | DreamSim | 0.6748 (.7133/.8325/.4785) | 0.7608 | .746/.813/.615 | 96.9/96.2 |
+| dreamsim (dino_vitb16) | DINOv2-B/16 | — | DreamSim | 0.6919 (.7551/.8349/.4856) | 0.7571 | .712/.832/.631 | 95.6/94.8 |
+
+Each row is that release's selected checkpoint (argmax on its own selection axis). The
+Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
+Benchmark corpora are linked in the column header; the nights models are trained on
+[NIGHTS](https://github.com/ssundaram21/dreamsim/tree/main/dataset). `3tower-nights` is a
+legacy 224-square artifact (closed class), shown for provenance. The two `dreamsim` rows are
+its published NIGHTS numbers; all other cells are measured by us under one protocol.
+
+For scale: the Qwen model's FR mean (0.7368) matches published-protocol lpips-vgg
+(~0.7372) to within 0.0004, and the fgbadi60 model lands above it — all with ~11× fewer
+trained parameters than lpips-vgg's head+trunk adaptation. Caveat: every row here is scored
+under **our** protocol (our own LIVE DMOS labels), so read the cross-row gaps as indicative.
+
+Each release directory is **self-contained**: checkpoint, a vendored
+`dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a
+`validate_bundle.py` self-test (`python validate_bundle.py <bundle_dir>`).
+Start with the bundle READMEs:
+
+- [releases/rotasim-dinov3b-fgbadi60-v1/README.md](releases/rotasim-dinov3b-fgbadi60-v1/README.md)
+- [releases/rotasim-dinov3b-diffiqa-v1/README.md](releases/rotasim-dinov3b-diffiqa-v1/README.md)
+- [releases/rotasim-qwen38vit-diffiqa-v1/README.md](releases/rotasim-qwen38vit-diffiqa-v1/README.md)
+- [releases/rotasim-dinov3b-nights-v1/README.md](releases/rotasim-dinov3b-nights-v1/README.md)
+- [releases/rotasim-3tower-nights-v1/README.md](releases/rotasim-3tower-nights-v1/README.md)
 
 # Technicals
 [in-progress]
@@ -115,36 +155,7 @@ quality are near-independent.**
   the mean of its 12 cells ({CSIQ, LIVE, TID2008, TID2013} × {PLCC, SRCC, KRCC}).
 
 Training for one does not buy the other. Quoting any single-axis number alone
-misrepresents every model below — always read both.
-
-## Releases
-
-| Model | Tower | Base/Trained | Dataset | Our benchmark mean ([FGResQ](https://github.com/sxfly99/FGResQ)/[BAPPS](https://huggingface.co/datasets/chaofengc/IQA-PyTorch-Datasets/tree/main)/[DiffIQA](https://github.com/ChrisDud0257/AFINE)) | [FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv) | TID2013 (PLCC/SRCC/KRCC) |
-|---|---|---|---|---|---|---|
-| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | DINOv3-B/16 | 86M/1.29M | FGResQ + BAPPS + DiffIQA | **0.7533** (.7384/.8553/.6663) | **0.7515** | .762/.707/.524 |
-| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | DINOv3-B/16 | 86M/1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7180 | .712/.688/.508 |
-| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M/2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7368 | .661/.779/.585 |
-| [nights](releases/rotasim-dinov3b-nights-v1/) | DINOv3-B/16 | 86M/0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.8133 | .834/.824/.628 |
-
-Benchmark corpora are linked in the column header; the nights model is trained on [NIGHTS](https://github.com/ssundaram21/dreamsim/tree/main/dataset).
-
-Each row is that release's selected checkpoint (argmax on its own selection axis). The
-Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
-
-For scale: published-protocol lpips-vgg sits at ~0.7372 FR-benchmark mean — the Qwen
-model matches it to within 0.0004, and the new fgbadi60 model lands above it, all with
-~11× fewer trained parameters than lpips-vgg's head+trunk adaptation. Caveat: our LIVE
-cells use our own DMOS labels, so these cross-row gaps are indicative, not exact.
-
-Each release directory is **self-contained**: checkpoint, a vendored
-`dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a
-`validate_bundle.py` self-test (`python validate_bundle.py <bundle_dir>`).
-Start with the bundle READMEs:
-
-- [releases/rotasim-dinov3b-fgbadi60-v1/README.md](releases/rotasim-dinov3b-fgbadi60-v1/README.md)
-- [releases/rotasim-dinov3b-diffiqa-v1/README.md](releases/rotasim-dinov3b-diffiqa-v1/README.md)
-- [releases/rotasim-qwen38vit-diffiqa-v1/README.md](releases/rotasim-qwen38vit-diffiqa-v1/README.md)
-- [releases/rotasim-dinov3b-nights-v1/README.md](releases/rotasim-dinov3b-nights-v1/README.md)
+misrepresents every model in the table — always read both.
 
 ## Quickstart (as a differentiable loss)
 
