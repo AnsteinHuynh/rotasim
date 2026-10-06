@@ -98,8 +98,8 @@ The cache for the cache
 | pyiqa l1 | — | 0/0 | — | 0.6149 (.7097/.7010/.4342) | 0.4967 | .423/.488/.347 | — |
 | pyiqa psnr | — | 0/0 | — | 0.6122 (.7216/.6842/.4306) | 0.6513 | .660/.687/.496 | — |
 | pyiqa lpips | — | 2.47M/1.2K | BAPPS | 0.6744 (.7037/.8289/.4904) | 0.7571 | .753/.744/.548 | — |
-| [dreamsim](https://github.com/ssundaram21/dreamsim) (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | 264M/1.77M | DreamSim | 0.6748 (.7133/.8325/.4785) | 0.7720 | .746/.813/.615 | 96.9/96.2 |
-| dreamsim (dino_vitb16) | DINOv2-B/16 | 92.6M/0.59M | DreamSim | 0.6919 (.7551/.8349/.4856) | 0.7715 | .712/.832/.631 | 95.6/94.8 |
+| [dreamsim](https://github.com/ssundaram21/dreamsim) (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | 264M/1.77M | NIGHTS | 0.6748 (.7133/.8325/.4785) | 0.7720 | .746/.813/.615 | 96.9/96.2 |
+| dreamsim (dino_vitb16) | DINOv2-B/16 | 92.6M/0.59M | NIGHTS | 0.6919 (.7551/.8349/.4856) | 0.7715 | .712/.832/.631 | 95.6/94.8 |
 
 Each row is that release's selected checkpoint (argmax on its own selection axis). The
 Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
