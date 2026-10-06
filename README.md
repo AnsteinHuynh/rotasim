@@ -91,7 +91,7 @@ The cache for the cache
 | 🔄[diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7247 | .712/.688/.508 | — |
 | 🔄[qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M/2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7505 | .661/.779/.585 | — |
 | 🔄[nights](releases/rotasim-dinov3b-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.7961 | .765/.824/.628 | 94.59/94.79 |
-| 🔄[3tower-nights](releases/rotasim-3tower-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) + [SigLIP2-base/16](https://github.com/google-research/big_vision/blob/main/big_vision/configs/proj/image_text/README_siglip2.md) + [MetaCLIP2-B/16](https://huggingface.co/docs/transformers/en/model_doc/metaclip_2) | 266M/1.29M | NIGHTS | — | 0.4993 | .479/.526/.366 | 95.64/95.61 |
+| 🔄[3tower-nights](releases/rotasim-3tower-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) + [SigLIP2-base/16](https://github.com/google-research/big_vision/blob/main/big_vision/configs/proj/image_text/README_siglip2.md) + [MetaCLIP2-B/16](https://huggingface.co/docs/transformers/en/model_doc/metaclip_2) | 266M/1.29M | NIGHTS | 0.6907† (.7252/.8421/.5048) | 0.4993 | .479/.526/.366 | 95.64/95.61 |
 | [pyiqa](https://github.com/chaofengc/IQA-PyTorch) topiq | — | 23.5M/12.5M | KADID-10K | 0.6755 (.7503/.7943/.4821) | 0.8929 | .916/.917/.744 | — |
 | pyiqa ssim | — | 0/0 | — | 0.6277 (.7300/.6962/.4569) | 0.6762 | .656/.627/.455 | — |
 | pyiqa ms-ssim | — | 0/0 | — | 0.6241 (.7216/.6890/.4617) | 0.7848 | .782/.786/.605 | — |
@@ -101,6 +101,40 @@ The cache for the cache
 | [dreamsim](https://github.com/ssundaram21/dreamsim) (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | 264M/1.77M | NIGHTS | 0.6748 (.7133/.8325/.4785) | 0.7720 | .746/.813/.615 | 96.9/96.2 |
 | dreamsim (dino_vitb16) | DINOv2-B/16 | 92.6M/0.59M | NIGHTS | 0.6919 (.7551/.8349/.4856) | 0.7715 | .712/.832/.631 | 95.6/94.8 |
 
+Each row is that release's selected checkpoint (argmax on its own selection axis). The
+Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
+Benchmark corpora are linked in the column header; the nights models are trained on
+[NIGHTS](https://github.com/ssundaram21/dreamsim/tree/main/dataset). `3tower-nights` is a
+legacy 224-square artifact (closed class), shown for provenance. The two `dreamsim` rows are
+its published NIGHTS numbers; all other cells are measured by us under one protocol.
+† `3tower-nights`'s preference cells are scored at its own **224-square** geometry — its
+towers have fixed position embeddings and cannot take the 288-class pixels the other rows
+use — so its `Our benchmark mean` is a 224-class score and is **not directly comparable** to
+the 288-class rows above it.
+
+For scale: the Qwen model's FR mean (0.7505) sits above published-protocol lpips-vgg
+(~0.7372), and the fgbadi60 model (0.7619) above both — all with ~11× fewer trained
+parameters than lpips-vgg's head+trunk adaptation.
+
+**LIVE labels — every row is on the published convention.** pyiqa's LIVE dataset ships two
+DMOS files, and the published IQA-PyTorch table used `dmos_realigned.mat` (`dmos_new`), not
+the `dmos.mat` that pyiqa's own `scripts/process_live.py` builds. Every cell here — our
+checkpoints *and* the baseline rows — is scored against that same realigned ground truth, so
+the pyiqa baseline rows now reproduce the published table **exactly** (topiq_fr 0.8929, to the
+digit). This only moves the LIVE cells (and the FR mean that contains them); CSIQ, TID2008 and
+TID2013 are unaffected. Do not splice in a number scored against the other LIVE variant — the
+two are **not** comparable on LIVE or on the FR mean.
+
+Each release directory is **self-contained**: checkpoint, a vendored
+`dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a
+`validate_bundle.py` self-test (`python validate_bundle.py <bundle_dir>`).
+Start with the bundle READMEs:
+
+- [releases/rotasim-dinov3b-fgbadi60-v1/README.md](releases/rotasim-dinov3b-fgbadi60-v1/README.md)
+- [releases/rotasim-dinov3b-diffiqa-v1/README.md](releases/rotasim-dinov3b-diffiqa-v1/README.md)
+- [releases/rotasim-qwen38vit-diffiqa-v1/README.md](releases/rotasim-qwen38vit-diffiqa-v1/README.md)
+- [releases/rotasim-dinov3b-nights-v1/README.md](releases/rotasim-dinov3b-nights-v1/README.md)
+- [releases/rotasim-3tower-nights-v1/README.md](releases/rotasim-3tower-nights-v1/README.md)
 
 # Technicals
 [in-progress]

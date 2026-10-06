@@ -47,6 +47,19 @@ The weak TID2008/TID2013 columns are the cost of scoring a 224-square
 natural-image metric on synthetic-distortion corpora — do not read the .4993 as this
 model's quality; the NIGHTS numbers above are its home measurement.
 
+## Preference panel (S2), own 224 geometry
+
+2AFC accuracy on the same preference cells the other releases use (FGResq sv2 837 rows /
+BAPPS 836 / DiffIQA 836), scored at **this model's own 224-square** pipeline:
+
+| fg | ba | di | composite |
+|---|---|---|---|
+| .7252 | .8421 | .5048 | **.6907** |
+
+Caveat: this is a 224-class score. The other rows in the repo README use the 288-class
+panel, so the composites are **not directly comparable** — the DiffIQA cell in particular
+is scored on a 224 crop of 512px sources and reads low for that reason.
+
 ## Use as a loss
 
 Same drop-in contract as the other bundles (see `HOWTO.md`):
