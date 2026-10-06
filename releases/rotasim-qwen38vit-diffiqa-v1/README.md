@@ -23,17 +23,18 @@ are near-independent; quote both or quote neither.
 Ladder: frozen 0.6911 / @400 0.6971 / @1600 0.7047 / @2400 0.7086 / **@2800 0.7090** /
 @3200 0.7074 / @3900 0.7011 (decline confirmed past the argmax).
 
-**GM12 — synthetic-FR grand mean** (PLCC/SRCC/KRCC x 4 datasets, our protocol):
+**GM12 — synthetic-FR grand mean** (PLCC/SRCC/KRCC x 4 datasets, LIVE on the published
+`dmos_realigned` labels):
 
 | CSIQ | LIVE | TID2008 | TID2013 | **GM12** |
 |---|---|---|---|---|
-| .745/.922/.759 | .585/.920/.747 | .693/.818/.627 | .661/.779/.585 | **0.7368** |
+| .745/.922/.759 | .671/.947/.799 | .693/.818/.627 | .661/.779/.585 | **0.7505** |
 
-That GM12 is ABOVE the DINO champion's 0.7248 and 0.0004 below published-protocol
-lpips-vgg — and step 2800 was selected on the COMPOSITE, so the FR win is not
-cherry-picked. Read: **rank-strong (SRCC/KRCC lead everywhere), linear-weak (PLCC
-collapses on LIVE)** — it orders distortions correctly but its distance scale is
-not linearly monotone in severity.
+That GM12 is ABOVE the DINO champion's 0.7247 and above published-protocol lpips-vgg
+(~0.7372) — and step 2800 was selected on the COMPOSITE, so the FR win is not
+cherry-picked. Read: **rank-strong, linear-weak** — it orders distortions well
+(SRCC .818–.947) but its distance scale maps sub-linearly on every dataset
+(PLCC .66–.74).
 
 ## Training recipe
 

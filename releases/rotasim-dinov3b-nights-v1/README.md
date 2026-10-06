@@ -139,7 +139,8 @@ Contract, verified in `VALIDATION.log` against the shipped copy:
 ## Full-reference IQA benchmarks (leak-clean)
 
 Protocol: pyiqa-bench pair lists and labels, **native resolution** (no crop/resize), one
-forward per unique image, PLCC after the standard 4-parameter logistic fit. All reference rows
+forward per unique image, **raw Pearson PLCC** (pyiqa protocol). The LIVE column uses the
+published `dmos_realigned` labels, matching the IQA-PyTorch table. All reference rows
 are the published pyiqa numbers re-measured under this protocol. Trained on NIGHTS only —
 none of these four datasets were seen in training.
 
@@ -150,7 +151,7 @@ none of these four datasets were seen in training.
 | lpips | 0.923 | 0.924 | 0.715 | 0.745 |
 | lpips-vgg | 0.883 | 0.932 | 0.654 | 0.670 |
 | dists | 0.930 | 0.948 | 0.665 | 0.708 |
-| **rotasim-dinov3b-nights** | **0.941** | **0.920** | **0.812** | **0.824** |
+| **rotasim-dinov3b-nights** | **0.941** | **0.954** | **0.812** | **0.824** |
 | topiq_fr | 0.967 | 0.976 | 0.923 | 0.917 |
 
 Full table with PLCC/KRCC and every reference metric: `fr_benchmark_results.csv`. The complete

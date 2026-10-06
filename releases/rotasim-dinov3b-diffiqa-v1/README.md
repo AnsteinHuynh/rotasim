@@ -22,14 +22,14 @@ Caveat: per-cell values at step 1300 are not banked on disk; the composite is.
 The 400-step point of this lineage scored fg .7061 / ba .7847 / di .6232.
 
 **GM12 — synthetic-FR grand mean** ({CSIQ, LIVE, TID2008, TID2013} x {PLCC, SRCC, KRCC},
-raw Pearson, dmos-live labels, our protocol):
+raw Pearson, LIVE on the published `dmos_realigned` labels):
 
 | CSIQ | LIVE | TID2008 | TID2013 | **GM12** |
 |---|---|---|---|---|
-| .810/.843/.658 | .764/.906/.725 | .733/.725/.544 | .712/.688/.508 | **.7180** (@1300) / .7248 (@1250 argmax) |
+| .810/.843/.658 | .829/.910/.737 | .733/.725/.544 | .712/.688/.508 | **.7247** (@1300) / .7306 (@1250 argmax) |
 
 Per-dataset cells: `FR_benchmark_results.csv` in this directory. Published-protocol
-lpips-vgg sits at ~.7372 GM12 — this checkpoint reaches within 0.012 of it with
+lpips-vgg sits at ~.7372 GM12 — the @1250 argmax reaches within 0.007 of it with
 ~11x fewer trained parameters than lpips-vgg's head+trunk adaptation.
 
 ## Training recipe

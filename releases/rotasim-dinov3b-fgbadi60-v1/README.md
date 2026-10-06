@@ -23,16 +23,17 @@ cells, our protocol):
 
 **Fidelity axis — FR-benchmark mean** ([IQA-PyTorch full-reference
 benchmark](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv))
-({CSIQ, LIVE, TID2008, TID2013} × {PLCC, SRCC, KRCC}, raw Pearson, our protocol):
+({CSIQ, LIVE, TID2008, TID2013} × {PLCC, SRCC, KRCC}, raw Pearson, LIVE on the published
+`dmos_realigned` labels):
 
 | CSIQ | LIVE | TID2008 | TID2013 | mean |
 |---|---|---|---|---|
-| .879/.890/.702 | .885/.917/.742 | .752/.720/.538 | .762/.707/.524 | **.7515** (@825) |
+| .879/.890/.702 | .928/.949/.793 | .752/.720/.538 | .762/.707/.524 | **.7619** (@825) |
 
-Per-dataset cells: `FR_benchmark_results.csv` in this directory. **Convention
-caveat:** our LIVE cells use our own DMOS labels, so do not mix them with the
-repo-published rows (which use `dmos_realigned` on LIVE) — the published
-lpips-vgg mean, for instance, sits at ~0.7372 under its own labels.
+Per-dataset cells: `FR_benchmark_results.csv` in this directory. **Convention:** every row,
+ours and the references, is scored on the published LIVE convention (`dmos_realigned.mat`),
+so these cells are directly comparable to the IQA-PyTorch table (published lpips-vgg mean
+~0.7372). The other LIVE variant (`dmos.mat`) is *not* interchangeable — see the repo README.
 
 ## Why this checkpoint
 
@@ -41,12 +42,14 @@ is itself the interesting part:
 
 * the **preference mean peaks earlier**, at step 650/700 (0.7617), then oscillates
   in a ~.748–.758 band;
-* the **FR-benchmark mean peaks at step 825** (0.7515), *after* the preference
-  axis has peaked, then rolls over (.7509@850 → .7480@875 → .7455@900).
+* the **FR-benchmark mean peaks late and flat**: .7619@825, **.7627@850**, then
+  .7592@875 → .7554@900.
 
 Both curves are a **nested continuation of one run** (consecutive rungs of a single
-trajectory), so those differences carry no cross-run term. Step 825 is the
-FR-benchmark-mean argmax; the preference-mean argmax of the same run is step 650.
+trajectory), so those differences carry no cross-run term. Step 825 is the released
+checkpoint; on the published LIVE labels the FR-mean argmax is step 850, a 0.08pp
+difference — inside run noise, so 825 and 850 are effectively tied at the top. The
+preference-mean argmax of the same run is step 650.
 
 ## Training recipe
 

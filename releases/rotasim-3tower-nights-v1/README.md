@@ -36,14 +36,15 @@ much larger ensemble.
 
 The towers use **fixed position embeddings**, so the native-resolution embedding path
 that the other bundles use is impossible here; these cells are the model's own
-224-square class (`--own224`). (CSIQ/LIVE/TID2008/TID2013 = PLCC/SRCC/KRCC)
+224-square class (`--own224`). LIVE is on the published `dmos_realigned` labels.
+(CSIQ/LIVE/TID2008/TID2013 = PLCC/SRCC/KRCC)
 
 | CSIQ | LIVE | TID2008 | TID2013 | mean |
 |---|---|---|---|---|
-| .718/.742/.534 | .643/.644/.455 | .408/.372/.253 | .550/.526/.366 | **.517** |
+| .527/.742/.534 | .536/.749/.554 | .408/.372/.253 | .479/.526/.366 | **.4993** |
 
 The weak TID2008/TID2013 columns are the cost of scoring a 224-square
-natural-image metric on synthetic-distortion corpora — do not read the .517 as this
+natural-image metric on synthetic-distortion corpora — do not read the .4993 as this
 model's quality; the NIGHTS numbers above are its home measurement.
 
 ## Use as a loss
