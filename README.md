@@ -87,19 +87,19 @@ The cache for the cache
 
 | Model | Tower | Base/Trained | Dataset | Our benchmark mean ([FGResQ](https://github.com/sxfly99/FGResQ)/[BAPPS](https://huggingface.co/datasets/chaofengc/IQA-PyTorch-Datasets/tree/main)/[DiffIQA](https://github.com/ChrisDud0257/AFINE)) | [FR-benchmark mean](https://github.com/chaofengc/IQA-PyTorch/blob/main/tests/FR_benchmark_results.csv) | TID2013 (PLCC/SRCC/KRCC) | NIGHTS (Val/Test) |
 |---|---|---|---|---|---|---|---|
-| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | FGResQ + BAPPS + DiffIQA | **0.7533** (.7384/.8553/.6663) | **0.7515** | .762/.707/.524 | — |
-| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7180 | .712/.688/.508 | — |
-| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M/2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7368 | .661/.779/.585 | — |
-| [nights](releases/rotasim-dinov3b-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.8133 | .834/.824/.628 | 94.59/94.79 |
-| [3tower-nights](releases/rotasim-3tower-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) + [SigLIP2-base/16](https://github.com/google-research/big_vision/blob/main/big_vision/configs/proj/image_text/README_siglip2.md) + [MetaCLIP2-B/16](https://huggingface.co/docs/transformers/en/model_doc/metaclip_2) | 266M/1.29M | NIGHTS | — | 0.517 | .550/.526/.366 | 95.64/95.61 |
-| [pyiqa](https://github.com/chaofengc/IQA-PyTorch) topiq | — | — | KADID-10K | 0.6755 (.7503/.7943/.4821) | 0.8756 | .916/.917/.744 | — |
-| pyiqa ssim | — | — | — | 0.6277 (.7300/.6962/.4569) | 0.6576 | .656/.627/.455 | — |
-| pyiqa ms-ssim | — | — | — | 0.6241 (.7216/.6890/.4617) | 0.7667 | .782/.786/.605 | — |
-| pyiqa l1 | — | — | — | 0.6149 (.7097/.7010/.4342) | 0.4751 | .423/.488/.347 | — |
-| pyiqa psnr | — | — | — | 0.6122 (.7216/.6842/.4306) | 0.6317 | .660/.687/.496 | — |
-| pyiqa lpips | — | — | BAPPS | 0.6744 (.7037/.8289/.4904) | 0.7400 | .753/.744/.548 | — |
-| [dreamsim](https://github.com/ssundaram21/dreamsim) (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | — | DreamSim | 0.6748 (.7133/.8325/.4785) | 0.7608 | .746/.813/.615 | 96.9/96.2 |
-| dreamsim (dino_vitb16) | DINOv2-B/16 | — | DreamSim | 0.6919 (.7551/.8349/.4856) | 0.7571 | .712/.832/.631 | 95.6/94.8 |
+| [fgbadi60](releases/rotasim-dinov3b-fgbadi60-v1/) **(recommended)** | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | FGResQ + BAPPS + DiffIQA | **0.7533** (.7384/.8553/.6663) | **0.7619** | .762/.707/.524 | — |
+| [diffiqa](releases/rotasim-dinov3b-diffiqa-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/1.29M | DiffIQA | 0.7250 (.7061/.7919/.6770) | 0.7247 | .712/.688/.508 | — |
+| [qwen-diffiqa](releases/rotasim-qwen38vit-diffiqa-v1/) | Qwen3.8-27B-mmproj | 460.7M/2.32M | DiffIQA | 0.7090 (.7360/.8266/.5646) | 0.7505 | .661/.779/.585 | — |
+| [nights](releases/rotasim-dinov3b-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) | 86M/0.43M | NIGHTS | 0.6903 (.7395/.8577/.4737) | 0.7961 | .765/.824/.628 | 94.59/94.79 |
+| [3tower-nights](releases/rotasim-3tower-nights-v1/) | [DINOv3-B/16](https://github.com/facebookresearch/dinov3) + [SigLIP2-base/16](https://github.com/google-research/big_vision/blob/main/big_vision/configs/proj/image_text/README_siglip2.md) + [MetaCLIP2-B/16](https://huggingface.co/docs/transformers/en/model_doc/metaclip_2) | 266M/1.29M | NIGHTS | — | 0.4993 | .479/.526/.366 | 95.64/95.61 |
+| [pyiqa](https://github.com/chaofengc/IQA-PyTorch) topiq | — | 23.5M/12.5M | KADID-10K | 0.6755 (.7503/.7943/.4821) | 0.8929 | .916/.917/.744 | — |
+| pyiqa ssim | — | 0/0 | — | 0.6277 (.7300/.6962/.4569) | 0.6762 | .656/.627/.455 | — |
+| pyiqa ms-ssim | — | 0/0 | — | 0.6241 (.7216/.6890/.4617) | 0.7848 | .782/.786/.605 | — |
+| pyiqa l1 | — | 0/0 | — | 0.6149 (.7097/.7010/.4342) | 0.4967 | .423/.488/.347 | — |
+| pyiqa psnr | — | 0/0 | — | 0.6122 (.7216/.6842/.4306) | 0.6513 | .660/.687/.496 | — |
+| pyiqa lpips | — | 2.47M/1.2K | BAPPS | 0.6744 (.7037/.8289/.4904) | 0.7571 | .753/.744/.548 | — |
+| [dreamsim](https://github.com/ssundaram21/dreamsim) (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | 264M/1.77M | DreamSim | 0.6748 (.7133/.8325/.4785) | 0.7720 | .746/.813/.615 | 96.9/96.2 |
+| dreamsim (dino_vitb16) | DINOv2-B/16 | 92.6M/0.59M | DreamSim | 0.6919 (.7551/.8349/.4856) | 0.7715 | .712/.832/.631 | 95.6/94.8 |
 
 Each row is that release's selected checkpoint (argmax on its own selection axis). The
 Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
@@ -108,18 +108,18 @@ Benchmark corpora are linked in the column header; the nights models are trained
 legacy 224-square artifact (closed class), shown for provenance. The two `dreamsim` rows are
 its published NIGHTS numbers; all other cells are measured by us under one protocol.
 
-For scale: the Qwen model's FR mean (0.7368) matches published-protocol lpips-vgg
-(~0.7372) to within 0.0004, and the fgbadi60 model lands above it — all with ~11× fewer
-trained parameters than lpips-vgg's head+trunk adaptation.
+For scale: the Qwen model's FR mean (0.7505) sits above published-protocol lpips-vgg
+(~0.7372), and the fgbadi60 model (0.7619) above both — all with ~11× fewer trained
+parameters than lpips-vgg's head+trunk adaptation.
 
-**Why the FR cells can differ from the published IQA-PyTorch table.** On CSIQ, TID2008 and
-TID2013 every baseline row above reproduces the published table **exactly** (to 4 dp). The
-**LIVE** cells are the only difference, and it is a ground-truth-label variant, not a
-protocol difference: pyiqa's LIVE dataset ships two DMOS files, and the published table used
-`dmos_realigned.mat` while we (like pyiqa's own `scripts/process_live.py`) use `dmos.mat`.
-Re-scoring the *identical* predictions against each reproduces both rows to the digit. Our
-checkpoints are scored on the same `dmos.mat` pair lists, so the whole table is kept on that
-one convention deliberately — do not splice the published LIVE numbers in.
+**LIVE labels — every row is on the published convention.** pyiqa's LIVE dataset ships two
+DMOS files, and the published IQA-PyTorch table used `dmos_realigned.mat` (`dmos_new`), not
+the `dmos.mat` that pyiqa's own `scripts/process_live.py` builds. Every cell here — our
+checkpoints *and* the baseline rows — is scored against that same realigned ground truth, so
+the pyiqa baseline rows now reproduce the published table **exactly** (topiq_fr 0.8929, to the
+digit). This only moves the LIVE cells (and the FR mean that contains them); CSIQ, TID2008 and
+TID2013 are unaffected. Do not splice in a number scored against the other LIVE variant — the
+two are **not** comparable on LIVE or on the FR mean.
 
 Each release directory is **self-contained**: checkpoint, a vendored
 `dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a
