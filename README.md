@@ -101,36 +101,6 @@ The cache for the cache
 | [dreamsim](https://github.com/ssundaram21/dreamsim) (ensemble) | DINOv2-B/16 + CLIP-B/16 + OpenCLIP-B/16 | 264M/1.77M | NIGHTS | 0.6748 (.7133/.8325/.4785) | 0.7720 | .746/.813/.615 | 96.9/96.2 |
 | dreamsim (dino_vitb16) | DINOv2-B/16 | 92.6M/0.59M | NIGHTS | 0.6919 (.7551/.8349/.4856) | 0.7715 | .712/.832/.631 | 95.6/94.8 |
 
-Each row is that release's selected checkpoint (argmax on its own selection axis). The
-Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
-Benchmark corpora are linked in the column header; the nights models are trained on
-[NIGHTS](https://github.com/ssundaram21/dreamsim/tree/main/dataset). `3tower-nights` is a
-legacy 224-square artifact (closed class), shown for provenance. The two `dreamsim` rows are
-its published NIGHTS numbers; all other cells are measured by us under one protocol.
-
-For scale: the Qwen model's FR mean (0.7505) sits above published-protocol lpips-vgg
-(~0.7372), and the fgbadi60 model (0.7619) above both — all with ~11× fewer trained
-parameters than lpips-vgg's head+trunk adaptation.
-
-**LIVE labels — every row is on the published convention.** pyiqa's LIVE dataset ships two
-DMOS files, and the published IQA-PyTorch table used `dmos_realigned.mat` (`dmos_new`), not
-the `dmos.mat` that pyiqa's own `scripts/process_live.py` builds. Every cell here — our
-checkpoints *and* the baseline rows — is scored against that same realigned ground truth, so
-the pyiqa baseline rows now reproduce the published table **exactly** (topiq_fr 0.8929, to the
-digit). This only moves the LIVE cells (and the FR mean that contains them); CSIQ, TID2008 and
-TID2013 are unaffected. Do not splice in a number scored against the other LIVE variant — the
-two are **not** comparable on LIVE or on the FR mean.
-
-Each release directory is **self-contained**: checkpoint, a vendored
-`dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a
-`validate_bundle.py` self-test (`python validate_bundle.py <bundle_dir>`).
-Start with the bundle READMEs:
-
-- [releases/rotasim-dinov3b-fgbadi60-v1/README.md](releases/rotasim-dinov3b-fgbadi60-v1/README.md)
-- [releases/rotasim-dinov3b-diffiqa-v1/README.md](releases/rotasim-dinov3b-diffiqa-v1/README.md)
-- [releases/rotasim-qwen38vit-diffiqa-v1/README.md](releases/rotasim-qwen38vit-diffiqa-v1/README.md)
-- [releases/rotasim-dinov3b-nights-v1/README.md](releases/rotasim-dinov3b-nights-v1/README.md)
-- [releases/rotasim-3tower-nights-v1/README.md](releases/rotasim-3tower-nights-v1/README.md)
 
 # Technicals
 [in-progress]
@@ -182,6 +152,40 @@ tower resolution (`qwen_tower_path` config key or `QWEN_TOWER_PATH` env).
 can read *closer* than a clean-vs-degraded pair of one scene, so as a training
 loss the distance must ride the reconstruction pair together with a
 pixel/content term (both bundle READMEs carry this caveat).
+
+## Releases and benchmarks
+
+Each row is that release's selected checkpoint (argmax on its own selection axis). The
+Qwen tower is **not shipped** — `-mmproj` is the loader variant; point it at your own copy.
+Benchmark corpora are linked in the column header; the nights models are trained on
+[NIGHTS](https://github.com/ssundaram21/dreamsim/tree/main/dataset). `3tower-nights` is a
+legacy 224-square artifact (closed class), shown for provenance. The two `dreamsim` rows are
+its published NIGHTS numbers; all other cells are measured by us under one protocol.
+
+For scale: the Qwen model's FR mean (0.7505) sits above published-protocol lpips-vgg
+(~0.7372), and the fgbadi60 model (0.7619) above both — all with ~11× fewer trained
+parameters than lpips-vgg's head+trunk adaptation.
+
+**LIVE labels — every row is on the published convention.** pyiqa's LIVE dataset ships two
+DMOS files, and the published IQA-PyTorch table used `dmos_realigned.mat` (`dmos_new`), not
+the `dmos.mat` that pyiqa's own `scripts/process_live.py` builds. Every cell here — our
+checkpoints *and* the baseline rows — is scored against that same realigned ground truth, so
+the pyiqa baseline rows now reproduce the published table **exactly** (topiq_fr 0.8929, to the
+digit). This only moves the LIVE cells (and the FR mean that contains them); CSIQ, TID2008 and
+TID2013 are unaffected. Do not splice in a number scored against the other LIVE variant — the
+two are **not** comparable on LIVE or on the FR mean.
+
+Each release directory is **self-contained**: checkpoint, a vendored
+`dreamsim_oft/` package, README with the full two-axis numbers, a HOWTO, and a
+`validate_bundle.py` self-test (`python validate_bundle.py <bundle_dir>`).
+Start with the bundle READMEs:
+
+- [releases/rotasim-dinov3b-fgbadi60-v1/README.md](releases/rotasim-dinov3b-fgbadi60-v1/README.md)
+- [releases/rotasim-dinov3b-diffiqa-v1/README.md](releases/rotasim-dinov3b-diffiqa-v1/README.md)
+- [releases/rotasim-qwen38vit-diffiqa-v1/README.md](releases/rotasim-qwen38vit-diffiqa-v1/README.md)
+- [releases/rotasim-dinov3b-nights-v1/README.md](releases/rotasim-dinov3b-nights-v1/README.md)
+- [releases/rotasim-3tower-nights-v1/README.md](releases/rotasim-3tower-nights-v1/README.md)
+
 
 ## Honest-caveats corner
 
